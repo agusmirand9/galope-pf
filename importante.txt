@@ -1,8 +1,0 @@
-front:
-VITE_API_URL=http://localhost:2026/api
-
-back:
-PORT=2026
-MONGO_URI=mongodb+srv://admin:admin@cluster0.dvv1rm7.mongodb.net/
-DB_NAME=galope
-JWT_SECRET=b949e0e78f17aadbab8f7
