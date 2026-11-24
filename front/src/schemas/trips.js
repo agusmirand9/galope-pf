@@ -54,9 +54,9 @@ export const tripSchema = z.object({
 })
 
     .refine(
-        (viaje) => viaje.fechaRegreso >= viaje.fechaSalida,
+        (viaje) => viaje.origen.nombre !== viaje.destino.nombre,
         {
-            error: "La fecha de regreso no puede ser anterior a la de la salida",
-            path: ["fechaRegreso"]
+            error: "El origen y el destino no pueden ser el mismo",
+            path: ["destino"]
         }
     )

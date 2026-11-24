@@ -32,7 +32,7 @@ El backend y el frontend son proyectos independientes: cada uno tiene su
 
 ## Cómo levantar el proyecto
 
-Requisitos: Node.js 20 o superior y una base de datos MongoDB (por ejemplo,
+Requisitos: Node.js 22.22 o superior y una base de datos MongoDB (por ejemplo,
 un cluster gratuito en MongoDB Atlas).
 
 ### 1. Backend

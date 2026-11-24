@@ -3,7 +3,7 @@ Aplicación React de GALOPÉ. Consume la API que está en `../back`.
 
 ## Cómo levantarlo
 
-Requisitos: Node.js 20 o superior y la API corriendo (ver `../back/README.md`).
+Requisitos: Node.js 22.22 o superior y la API corriendo (ver `../back/README.md`).
 
 1. Instalar las dependencias:
    ```

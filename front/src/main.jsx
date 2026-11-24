@@ -7,6 +7,8 @@ import "./index.css"
 import SessionProvider from "./context/SessionProvider.jsx"
 import Layout from "./components/Layout.jsx"
 import ProtectedRoute from "./components/ProtectedRoute.jsx"
+import RouteError from "./components/RouteError.jsx"
+
 
 const Home = lazy(() => import("./pages/Home.jsx"))
 const Login = lazy(() => import("./pages/auth/Login.jsx"))
@@ -20,31 +22,38 @@ const DetalleViaje = lazy(() => import("./pages/viajes/DetalleViaje.jsx"))
 const EditarViaje = lazy(() => import("./pages/viajes/EditarViaje.jsx"))
 const NuevoAviso = lazy(() => import("./pages/avisos/NuevoAviso.jsx"))
 
+
+
 const router = createBrowserRouter([
     {
         path: "/",
         element: <Layout />,
         children: [
-            // publicas
-            { index: true, element: <Home /> },
-            { path: "login", element: <Login /> },
-            { path: "register", element: <Register /> },
-
-            // privadas
             {
-                element: <ProtectedRoute />,
+                errorElement: <RouteError />,
                 children: [
-                    { path: "viajes", element: <MisViajes /> },
-                    { path: "avisos", element: <Avisos /> },
-                    { path: "avisos/nuevo", element: <NuevoAviso /> },
-                    { path: "perfil", element: <Perfil /> },
-                    { path: "viajes/nuevo", element: <NuevoViaje /> },
-                    { path: "viajes/:id", element: <DetalleViaje /> },
-                    { path: "viajes/:id/editar", element: <EditarViaje /> },
+                    // publicas
+                    { index: true, element: <Home /> },
+                    { path: "login", element: <Login /> },
+                    { path: "register", element: <Register /> },
+
+                    // privadas
+                    {
+                        element: <ProtectedRoute />,
+                        children: [
+                            { path: "viajes", element: <MisViajes /> },
+                            { path: "avisos", element: <Avisos /> },
+                            { path: "avisos/nuevo", element: <NuevoAviso /> },
+                            { path: "perfil", element: <Perfil /> },
+                            { path: "viajes/nuevo", element: <NuevoViaje /> },
+                            { path: "viajes/:id", element: <DetalleViaje /> },
+                            { path: "viajes/:id/editar", element: <EditarViaje /> },
+                        ],
+                    },
+
+                    { path: "*", element: <NotFound /> },
                 ],
             },
-
-            { path: "*", element: <NotFound /> },
         ],
     },
 ])

@@ -28,7 +28,9 @@ export default function TripForm({ defaultValues = VALORES_INICIALES, onSubmit, 
                 <PlaceSelect control={control} name="origen" label="Origen"
                     error={errors.origen && "Elegí el origen"} />
                 <PlaceSelect control={control} name="destino" label="Destino"
-                    error={errors.destino && "Elegí el destino"} />
+                    error={errors.destino && (errors.destino.type === "custom"
+                        ? errors.destino.message
+                        : "Elegí el destino")} />
 
                 <FormField id="fechaSalida" label="Fecha de salida" type="date"
                     error={errors.fechaSalida?.message} {...register("fechaSalida")} />

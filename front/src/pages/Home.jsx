@@ -8,6 +8,7 @@ import { Link } from "react-router"
 import { ClipboardCheck, Megaphone, Route } from "lucide-react"
 import comunidadImg from "../assets/comunidad.jpg"
 
+
 const features = [
     { Icon: Route, titulo: "Recorrido a tu medida", texto: "Armá tu ruta, sumá tus paradas y cambiala cuando quieras." },
     { Icon: ClipboardCheck, titulo: "Viaje organizado", texto: "Planificá antes, navegá durante y guardá los recuerdos después." },

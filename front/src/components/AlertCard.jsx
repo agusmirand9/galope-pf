@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { Pencil, Trash2 } from "lucide-react"
+import { MapPin, Pencil, Trash2 } from "lucide-react"
 import { toast } from "react-toastify"
 import * as alertService from "../services/alerts.service.js"
 import { alertUpdateSchema } from "../schemas/alerts.js"
@@ -15,12 +15,12 @@ export default function AlertCard({ aviso, onUpdate, onDelete }) {
     const [editando, setEditando] = useState(false)
     const [ocupado, setOcupado] = useState(false)
 
-    const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm({
+    const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm({
         resolver: zodResolver(alertUpdateSchema),
         defaultValues: { descripcion: aviso.descripcion ?? "" }
     })
 
-    const info = ALERT_INFO[aviso.tipo]
+    const info = ALERT_INFO[aviso.tipo] ?? { label: aviso.tipo, estado: "amarillo" }
     const cantidad = aviso.cantidadConfirmaciones
 
     async function confirmar() {
@@ -70,7 +70,8 @@ export default function AlertCard({ aviso, onUpdate, onDelete }) {
                         error={errors.descripcion?.message} {...register("descripcion")} />
                     <div className="flex gap-3">
                         <Button type="submit" disabled={isSubmitting}>Guardar</Button>
-                        <Button type="button" variant="secondary" onClick={() => setEditando(false)}>
+                        <Button type="button" variant="secondary"
+                            onClick={() => { reset({ descripcion: aviso.descripcion ?? "" }); setEditando(false) }}>
                             Cancelar
                         </Button>
                     </div>
@@ -78,6 +79,16 @@ export default function AlertCard({ aviso, onUpdate, onDelete }) {
             ) : (
                 <>
                     {aviso.descripcion && <p>{aviso.descripcion}</p>}
+                    {aviso.ubicacion && (
+                        <a
+                            href={`https://www.google.com/maps?q=${aviso.ubicacion.lat},${aviso.ubicacion.lng}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 text-sm text-azul underline"
+                        >
+                            <MapPin size={16} aria-hidden="true" /> Ver en el mapa
+                        </a>
+                    )}
                     <p className="text-sm text-marron/70">
                         @{aviso.username}{aviso.creadoEn && ` · ${timeAgo(aviso.creadoEn)}`}
                     </p>

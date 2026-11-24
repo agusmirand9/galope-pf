@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router"
+import { Link, NavLink, useLocation } from "react-router"
 import { Route, TriangleAlert, User } from "lucide-react"
 import { useSession } from "../context/session.context.js"
 import logo from "../assets/logo.svg"
@@ -17,6 +17,11 @@ const mobileLinkClass = ({ isActive }) =>
 
 export default function Nav() {
     const { usuario } = useSession()
+    const { pathname } = useLocation()
+
+    // en la landing los links son siempre los mismos; en el resto de la app, si hay sesión, los de la app
+    const enLanding = pathname === "/"
+    const linksApp = usuario && !enLanding
 
     return (
         <>
@@ -26,7 +31,7 @@ export default function Nav() {
                         <img src={logo} alt="Galopé" className="h-7 w-auto" />
                     </Link>
 
-                    {usuario ? (
+                    {linksApp ? (
                         <nav className="hidden items-center gap-4 text-sm md:flex">
                             {links.map(({ to, label }) => (
                                 <NavLink key={to} to={to} className={linkClass}>{label}</NavLink>
@@ -44,16 +49,27 @@ export default function Nav() {
                                 <a href="/#comunidad" className="text-marron/70 transition hover:text-marron">
                                     Comunidad
                                 </a>
-                                <Link to="/login" className="text-marron/70 transition hover:text-marron">
-                                    Ingresar
-                                </Link>
+                                {!usuario && (
+                                    <Link to="/login" className="text-marron/70 transition hover:text-marron">
+                                        Ingresar
+                                    </Link>
+                                )}
                             </nav>
-                            <Link
-                                to="/register"
-                                className="rounded-xl bg-marron px-4 py-2 text-sm font-medium text-crema transition hover:bg-marron/90"
-                            >
-                                Crear cuenta
-                            </Link>
+                            {usuario ? (
+                                <Link
+                                    to="/perfil"
+                                    className="rounded-xl bg-marron px-4 py-2 text-sm font-medium text-crema transition hover:bg-marron/90"
+                                >
+                                    Perfil
+                                </Link>
+                            ) : (
+                                <Link
+                                    to="/register"
+                                    className="rounded-xl bg-marron px-4 py-2 text-sm font-medium text-crema transition hover:bg-marron/90"
+                                >
+                                    Crear cuenta
+                                </Link>
+                            )}
                         </>
                     )}
                 </div>

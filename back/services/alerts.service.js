@@ -32,16 +32,6 @@ function toPublicAlert(aviso, uid) {
     }
 }
 
-//busca un aviso activo y verifico si es del usuario
-async function getAuthoredAlert(id, usuarioId) {
-    const aviso = await avisos.findOne({ _id: toObjectId(id), ...activeFilter() })
-    if (!aviso) throw new HttpError(404, "Aviso no encontrado")
-    if (!aviso.usuarioId.equals(toObjectId(usuarioId))) {
-        throw new HttpError(403, "No podés modificar un aviso de otra persona")
-    }
-    return aviso
-}
-
 //publicar un aviso
 export async function saveAlert(datos, usuario) {
     const uid = toObjectId(usuario.id)
@@ -105,24 +95,36 @@ export async function confirmAlert(id, usuarioId) {
     throw new HttpError(409, "Ya confirmaste este aviso")
 }
 
+async function failNotOwned(id) {
+    const existe = await avisos.findOne(
+        { _id: toObjectId(id), ...activeFilter() },
+        { projection: { _id: 1 } }
+    )
+    if (!existe) throw new HttpError(404, "Aviso no encontrado")
+    throw new HttpError(403, "No podés modificar un aviso de otra persona")
+}
+
+
 //editar aviso, solo descripcion
 export async function updateAlert(id, datos, usuarioId) {
-    const existente = await getAuthoredAlert(id, usuarioId)  
+    const uid = toObjectId(usuarioId)
+
     const aviso = await avisos.findOneAndUpdate(
-        { _id: existente._id },
+        { _id: toObjectId(id), usuarioId: uid, ...activeFilter() },
         { $set: { descripcion: datos.descripcion, actualizadoEn: new Date() } },
         { returnDocument: "after" }
     )
 
-    return toPublicAlert(aviso, toObjectId(usuarioId))
+    if (!aviso) await failNotOwned(id)
+    return toPublicAlert(aviso, uid)
 }
 
-//borrado logico, solo el dueño de ese
+//borrado logico, solo el dueño puede
 export async function deleteAlert(id, usuarioId) {
-    const aviso = await getAuthoredAlert(id, usuarioId)
-
-    await avisos.updateOne(
-        { _id: aviso._id },
+    const resultado = await avisos.updateOne(
+        { _id: toObjectId(id), usuarioId: toObjectId(usuarioId), ...activeFilter() },
         { $set: { eliminado: true, eliminadoEn: new Date() } }
     )
+
+    if (resultado.matchedCount === 0) await failNotOwned(id)
 }
