@@ -1,5 +1,5 @@
 import { Link } from "react-router"
-import logoceleste from "../assets/logoceleste.svg"
+import logoceleste from "../assets/logoceleste.png"
 
 const columnas = [
     {

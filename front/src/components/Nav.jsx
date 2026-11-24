@@ -1,7 +1,7 @@
 import { Link, NavLink, useLocation } from "react-router"
 import { Route, TriangleAlert, User } from "lucide-react"
 import { useSession } from "../context/session.context.js"
-import logo from "../assets/logo.svg"
+import logo from "../assets/logo.png"
 
 const links = [
     { to: "/viajes", label: "Viajes", Icon: Route },
