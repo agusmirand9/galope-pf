@@ -38,6 +38,12 @@ export default function Nav() {
                                 <a href="/#como-funciona" className="text-marron/70 transition hover:text-marron">
                                     Cómo funciona
                                 </a>
+                                <a href="/#avisos" className="text-marron/70 transition hover:text-marron">
+                                    Avisos
+                                </a>
+                                <a href="/#comunidad" className="text-marron/70 transition hover:text-marron">
+                                    Comunidad
+                                </a>
                                 <Link to="/login" className="text-marron/70 transition hover:text-marron">
                                     Ingresar
                                 </Link>
