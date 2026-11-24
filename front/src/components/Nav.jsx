@@ -20,23 +20,37 @@ export default function Nav() {
 
     return (
         <>
-            <header className="flex items-center justify-between px-5 py-4">
-                <Link to="/">
-                    <img src={logo} alt="Galopé" className="h-8 w-auto"/> 
-                </Link>
+            <header className="sticky top-4 z-50 flex justify-center px-5 ">
+                <div className="flex items-center gap-3 rounded-2xl bg-white/90 px-3 py-2 shadow-lg backdrop-blur md:gap-5">
+                    <Link to="/" className="shrink-0 pl-1">
+                        <img src={logo} alt="Galopé" className="h-7 w-auto" />
+                    </Link>
 
-                {usuario ? (
-                    <nav className="hidden gap-6 text-sm md:flex">
-                        {links.map(({ to, label }) => (
-                            <NavLink key={to} to={to} className={linkClass}>{label}</NavLink>
-                        ))}
-                    </nav>
-                ) : (
-                    <nav className="flex gap-5 text-sm">
-                        <Link to="/login" className="text-marron/70">Ingresar</Link>
-                        <Link to="/register" className="font-medium">Crear cuenta</Link>
-                    </nav>
-                )}
+                    {usuario ? (
+                        <nav className="hidden items-center gap-4 text-sm md:flex">
+                            {links.map(({ to, label }) => (
+                                <NavLink key={to} to={to} className={linkClass}>{label}</NavLink>
+                            ))}
+                        </nav>
+                    ) : (
+                        <>
+                            <nav className="hidden items-center gap-4 text-sm md:flex">
+                                <a href="/#como-funciona" className="text-marron/70 transition hover:text-marron">
+                                    Cómo funciona
+                                </a>
+                                <Link to="/login" className="text-marron/70 transition hover:text-marron">
+                                    Ingresar
+                                </Link>
+                            </nav>
+                            <Link
+                                to="/register"
+                                className="rounded-xl bg-marron px-4 py-2 text-sm font-medium text-crema transition hover:bg-marron/90"
+                            >
+                                Crear cuenta
+                            </Link>
+                        </>
+                    )}
+                </div>
             </header>
 
             {usuario && (

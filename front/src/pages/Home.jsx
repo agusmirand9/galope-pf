@@ -14,7 +14,7 @@ const pasos = [
 export default function Home() {
     return (
         <>
-            <section className="relative mx-5 overflow-hidden rounded-xl bg-marron">
+            <section className="relative mx-5 -mt-10 overflow-hidden rounded-xl bg-marron">
                 <img
                     src={hero}
                     alt=""
