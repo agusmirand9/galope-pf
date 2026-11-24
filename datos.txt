@@ -1,0 +1,9 @@
+Carrera:Diseño y Programación Web
+Materia:Clientes Web Mobile
+Cuatrimestre: 4to
+Año:2026
+Turno: Tarde
+Comisión:DWT4AP
+Apellido y Nombre:Miranda Agustina
+Docente:Santiago Gallino
+(2do parcial).
