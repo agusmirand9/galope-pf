@@ -1,6 +1,7 @@
 import { Link, NavLink } from "react-router"
 import { Route, TriangleAlert, User } from "lucide-react"
 import { useSession } from "../context/session.context.js"
+import logo from "../assets/logo.svg"
 
 const links = [
     { to: "/viajes", label: "Viajes", Icon: Route },
@@ -20,7 +21,9 @@ export default function Nav() {
     return (
         <>
             <header className="flex items-center justify-between px-5 py-4">
-                <Link to="/" className="font-titulo text-lg">GALOPÉ</Link>
+                <Link to="/">
+                    <img src={logo} alt="Galopé" className="h-8 w-auto"/> 
+                </Link>
 
                 {usuario ? (
                     <nav className="hidden gap-6 text-sm md:flex">

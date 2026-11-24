@@ -2,6 +2,8 @@ import Button from "../components/Button.jsx"
 import Chip from "../components/Chip.jsx"
 import Eyebrow from "../components/Eyebrow.jsx"
 import Footer from "../components/Footer.jsx"
+import hero from "../assets/hero.jpg"
+import logo from "../assets/logo.svg"
 
 const pasos = [
     { n: "01", titulo: "Armá tu recorrido", texto: "Elegí destino, origen y fechas, y mirá la ruta en el mapa." },
@@ -12,19 +14,24 @@ const pasos = [
 export default function Home() {
     return (
         <>
-            {/* cambiar desp el degradado por la img */}
             <section className="relative mx-5 overflow-hidden rounded-xl bg-marron">
-                <div className="absolute inset-0 bg-linear-to-b from-azul/50 to-marron to-70%" />
-                <div className="relative space-y-6 px-6 pb-12 pt-40 md:px-12 md:pt-56">
-                    <h1 className="font-titulo text-4xl text-crema md:text-6xl">
-                        Tu ruta, <br />tu viaje.
+                <img
+                    src={hero}
+                    alt=""
+                    className="absolute inset-0 h-full w-full object-cover"
+                />
+                <div className="relative flex min-h-[32rem] flex-col items-center justify-center space-y-5 px-6 py-12 text-center md:min-h-[36rem] md:px-12">
+                    <img src={logo} alt="Galopé" className="h-28 w-auto md:h-40" />
+                    <h1 className="font-titulo text-xl text-marron md:text-2xl">
+                        La libertad de viajar a donde quieras, <br />
+                        con la seguridad de estar bien acompañado
                     </h1>
-                    <p className="max-w-md text-celeste-claro">
+                    <p className="max-w-md text-crema font-semibold">
                         Armá tu recorrido con lo que confirmaron otros viajeros.
                     </p>
-                    <div className="flex items-center gap-6">
+                    <div className="flex items-center gap-6 ">
                         <Button variant="inverted" to="/register">Crear cuenta</Button>
-                        <a href="#como-funciona" className="text-sm text-celeste-claro">Cómo funciona ↓</a>
+                        <a href="#como-funciona" className="rounded-lg bg-crema/20 px-5 py-3 text-sm font-semibold text-crema backdrop-blur-sm">Cómo funciona ↓</a>
                     </div>
                 </div>
             </section>

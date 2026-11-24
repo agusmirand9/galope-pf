@@ -10,7 +10,10 @@ import alertsRoutes from "./routes/alerts.route.js"
 
 const app = express()
 
-app.use(cors())
+app.use(cors({
+    origin: ["http://localhost:5173", "https://galope-front.vercel.app"]
+}));
+
 app.use(express.json())
 
 app.get("/api", (req, res) => {
