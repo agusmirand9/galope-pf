@@ -23,8 +23,7 @@ export default function Home() {
                 <div className="relative flex min-h-[32rem] flex-col items-center justify-center space-y-5 px-6 py-12 text-center md:min-h-[36rem] md:px-12">
                     <img src={logo} alt="Galopé" className="h-28 w-auto md:h-40" />
                     <h1 className="font-titulo text-xl text-marron md:text-2xl">
-                        Tu ruta, <br />
-                        tu viaje.
+                        Tu ruta, tu viaje.
                     </h1>
                     <p className="max-w-md text-crema font-semibold">
                         Armá tu recorrido con lo que confirmaron otros viajeros.
