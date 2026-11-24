@@ -1,0 +1,27 @@
+@import "tailwindcss";
+@import "@fontsource/boldonse";
+@import "@fontsource-variable/mona-sans";
+
+@theme {
+  /* colores de galope */
+  --color-azul: #183b64;
+  --color-marron: #541f11;
+  --color-celeste: #c0d9f3;
+  --color-celeste-claro: #eef4fb;
+  --color-crema: #fff6e0;
+
+  /*colores de estado */
+   --color-estado-rojo: #ec2611;
+   --color-estado-amarillo: #ffc84d;
+   --color-estado-verde: #4fcf57;
+
+   /*tipografias*/
+   --font-titulo: "Boldonse", sans-serif;
+   --font-sans: "Mona Sans Variable", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-celeste-claro text-marron font-sans antialiased;
+  }
+}
