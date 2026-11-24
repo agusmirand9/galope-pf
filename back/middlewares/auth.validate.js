@@ -3,7 +3,7 @@ import * as tokenService from "../services/token.service.js"
 export function validateToken(req, res, next) {
     const header = req.headers.authorization
 
-    if (!header || header.startsWith("Bearer ")) {
+    if (!header || !header.startsWith("Bearer ")) {
         return res.status(401).json({ message: "Falta el token de autenticación"})
     }
 
