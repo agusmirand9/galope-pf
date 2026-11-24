@@ -144,21 +144,21 @@ export default function Home() {
                 </div>
             </section>
 
-            <section className="mx-auto mb-32 mt-48 max-w-5xl px-5">
-                <div className="flex flex-col gap-6 border-t border-marron/15 pt-10 md:flex-row md:items-end md:justify-between">
+            <section className="mx-auto mb-48 mt-48 max-w-5xl px-5">
+                <div className="flex flex-col items-center gap-6 rounded-xl border border-azul px-6 py-16 text-center">
                     <div className="space-y-3">
                         <Eyebrow>Sumate</Eyebrow>
                         <h2 className="text-3xl font-medium">Creá tu cuenta</h2>
-                        <p className="max-w-md text-sm text-marron/70">
+                        <p className="mx-auto max-w-md text-sm text-marron/70">
                             Los avisos son siempre gratis. Sumate y salí a la ruta.
                         </p>
                     </div>
-                    <div className="flex flex-col items-start gap-3 md:items-end">
-                        <Button to="/register">Crear cuenta</Button>
-                        <p className="text-sm text-marron/70">
-                            ¿Ya tenés cuenta? <Link to="/login" className="font-medium text-marron">Iniciá sesión</Link>
-                        </p>
-                    </div>
+
+                    <Button to="/register">Crear cuenta</Button>
+
+                    <p className="text-sm text-marron/70">
+                        ¿Ya tenés cuenta? <Link to="/login" className="font-medium text-marron">Iniciá sesión</Link>
+                    </p>
                 </div>
             </section>
 
