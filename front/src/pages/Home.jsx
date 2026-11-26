@@ -5,7 +5,7 @@ import Footer from "../components/Footer.jsx"
 import hero from "../assets/hero.jpg"
 import logo from "../assets/logo.png"
 import { Link } from "react-router"
-import { Check, ClipboardCheck, Megaphone, Route } from "lucide-react"
+import { Check, ClipboardCheck, Clock, Megaphone, Route } from "lucide-react"
 import comunidadImg from "../assets/comunidad.jpg"
 import cortadaImg from "../assets/celular.jpg"
 import trama from "../assets/trama.png"
@@ -154,6 +154,10 @@ export default function Home() {
                         <p className="text-sm text-marron/70">
                             Cada aviso muestra cuántos viajeros lo confirmaron y hace cuánto se publicó.
                             Así sabés en qué confiar.
+                        </p>
+                        <p className="flex items-start gap-2 pt-2 text-sm font-medium text-marron">
+                            <Clock size={18} strokeWidth={1.75} className="mt-0.5 shrink-0 text-azul" aria-hidden="true" />
+                            Si nadie lo confirma, el aviso desaparece a las 24 horas. Cada confirmación lo renueva.
                         </p>
                     </div>
 
