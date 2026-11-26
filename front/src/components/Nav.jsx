@@ -49,6 +49,9 @@ export default function Nav() {
                                 <a href="/#comunidad" className="text-marron/70 transition hover:text-marron">
                                     Comunidad
                                 </a>
+                                <a href="/#planes" className="text-marron/70 transition hover:text-marron">
+                                    Planes
+                                </a>                                
                                 {!usuario && (
                                     <Link to="/login" className="text-marron/70 transition hover:text-marron">
                                         Ingresar
